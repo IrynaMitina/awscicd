@@ -3,14 +3,7 @@ import json
 import tornado.ioloop
 import tornado.web
 import random
-
-
-# new comment
-def fibonacci_num(snum):
-    if snum in (0, 1):
-        return 1
-    else:
-        return fibonacci_num(snum - 1) + fibonacci_num(snum - 2)
+import fibo_lib
 
 
 class FibonacciHandler(tornado.web.RequestHandler):
@@ -21,7 +14,7 @@ class FibonacciHandler(tornado.web.RequestHandler):
             'date': time.ctime(),
             'label': 'FIBONACCI',
             'sequence num': snum,
-            'fibonacci': fibonacci_num(snum)
+            'fibonacci': fibo_lib.fibonacci_num(snum)
         }
         self.write(json.dumps(resp))
 
